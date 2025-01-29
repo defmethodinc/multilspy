@@ -4,7 +4,10 @@ Multilspy logger module.
 import inspect
 import logging
 from datetime import datetime
+from dataclasses import dataclass, asdict
+from json import dumps
 
+@dataclass
 class LogLine:
     """
     Represents a line in the Multilspy log
@@ -16,6 +19,13 @@ class LogLine:
     caller_name: str
     caller_line: int
     message: str
+
+    def json(self) -> str:
+        """
+        Return the log line as a JSON string
+        """
+        line_dict = asdict(self)
+        return dumps(line_dict)
 
 class MultilspyLogger:
     """
