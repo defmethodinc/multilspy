@@ -33,7 +33,7 @@ class Solargraph(LanguageServer):
         Creates a Solargraph instance. This class is not meant to be instantiated directly.
         Use LanguageServer.create() instead.
         """
-        solargraph_executable_path = self.setup_runtime_dependencies(logger, config, repository_root_path)
+        solargraph_executable_path = config.preinstalled_executeable_path or self.setup_runtime_dependencies(logger, config, repository_root_path)
         super().__init__(
             config,
             logger,

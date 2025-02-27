@@ -4,6 +4,7 @@ Configuration parameters for Multilspy.
 
 from enum import Enum
 from dataclasses import dataclass
+from typing import Optional
 
 class Language(str, Enum):
     """
@@ -29,6 +30,10 @@ class MultilspyConfig:
     """
     code_language: Language
     trace_lsp_communication: bool = False
+
+    # If the language server is already installed, set this to the fully qualified path of the executable
+    # otherwise, the language server will be installed automatically
+    preinstalled_executeable_path: Optional[str] = None
 
     @classmethod
     def from_dict(cls, env: dict):
